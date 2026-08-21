@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int q[100];
+int front = 0, rear = -1;
+
+void push(int x)
+{
+    int i, temp;
+
+    q[++rear] = x;
+
+    for(i = front; i < rear; i++)
+    {
+        temp = q[i];
+        q[i] = q[rear];
+        q[rear] = temp;
+    }
+}
+
+void pop()
+{
+    if(front > rear)
+        printf("Stack is empty\n");
+    else
+        printf("Popped: %d\n", q[front++]);
+}
+
+void peek()
+{
+    if(front > rear)
+        printf("Stack is empty\n");
+    else
+        printf("Top: %d\n", q[front]);
+}
+
+int main()
+{
+    push(10);
+    push(20);
+    push(30);
+
+    peek();
+    pop();
+    peek();
+
+    return 0;
+}
